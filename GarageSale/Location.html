@@ -1,0 +1,199 @@
+﻿
+<div class="loading-dialog" data-loading data-ng-init="init()">
+</div>
+
+
+
+<div class="container body-content">
+
+    <notifications-bar class="notifications"></notifications-bar>
+
+    <div style="padding-bottom:10px;">
+        <button type="button" style="font-size: 20px;" ng-click="goBack('/')" class="btn btn-primary">&nbsp; &laquo; &nbsp;</button>
+    </div>
+
+    <div class="mypage-header">
+        Check how far it is to the garagesale
+    </div>
+
+
+    <div>
+        Approximate distance from your location to the garage sale location if you need to pick up items.
+    </div>
+    <div id="distance" class="response"></div>
+    <br />
+
+    <div>
+        Approximate travelling time from your location to the garage sale location if you need to pick up items.
+    </div>
+    <div id="time" class="response"></div>
+    <br />
+
+    <div>
+        Approximate cost driving small 1200 cc car from your location to the garage sale location AND back if you need to pick up items.
+    </div>
+    <div id="smallcar" class="response"></div>
+    <br />
+
+    <div>
+        Approximate cost driving medium 2000 cc car from your location to the garage sale location AND back  if you need to pick up items.
+    </div>
+    <div id="mediumcar" class="response"></div>
+    <br />
+
+    <div>
+        Approximate cost driving large 3000 cc car from your location to the garage sale location AND back  if you need to pick up items.
+    </div>    
+    <div id="bigcar" class="response"></div>
+    <br />
+
+    <script type="text/javascript">
+        console.log("test");
+
+        var mylatitude;
+        var mylongitude;
+        navigator.geolocation.getCurrentPosition(function (position) {
+            mylatitude = position.coords.latitude;
+            console.log(mylatitude);
+            mylongitude = position.coords.longitude;
+            console.log(mylongitude);
+
+
+            var myorigin = "\"" + mylatitude + "," + mylongitude + "\"";
+            console.log("my origin = " + myorigin);
+            var origin = mylatitude + "," + mylongitude,
+                 destination = "-26.0788286,27.7965506",
+                 service = new google.maps.DistanceMatrixService();
+
+            service.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    avoidHighways: false,
+                    avoidTolls: false
+                },
+                callback
+            );
+
+
+
+            function callback(response, status) {
+                var orig = document.getElementById("orig"),
+                    dest = document.getElementById("dest"),
+                    dist = document.getElementById("dist");
+                time = document.getElementById("time");
+
+                if (status == "OK") {
+                    //dest.value = response.destinationAddresses[0];
+                    //orig.value = response.originAddresses[0];
+                    $("#distance").html(response.rows[0].elements[0].distance.text);
+                    $("#time").html(response.rows[0].elements[0].duration.text);
+
+                    var costofpetrol = 12.3;
+                    var car = 12.1;
+                    var mydistance = response.rows[0].elements[0].distance.text.replace(' km', '');
+                   // var mydistance = response.rows[0].elements[0].distance.text.replace(' m', '');
+                    car = (mydistance * (6 / 100) * costofpetrol * 2).toFixed(2);
+                    $("#smallcar").html("R" + car);
+
+                    car = (mydistance * (9 / 100) * costofpetrol * 2).toFixed(2);
+                    $("#mediumcar").html("R" + car);
+
+                    car = (mydistance * (12 / 100) * costofpetrol * 2).toFixed(2);
+                    $("#bigcar").html("R" + car);
+                    //time.value = response.rows[0].elements[0].duration.text;
+                } else {
+                    alert("Error: " + status);
+                }
+            }
+
+        });
+
+        //var myorigin = "\"" + mylatitude + "," + mylongitude + "\"";
+        //console.log("my origin = " + myorigin);
+        //var origin = myorigin,
+        //     destination = "Randfontein, South Africa",
+        //     service = new google.maps.DistanceMatrixService();
+
+        // service.getDistanceMatrix(
+        //     {
+        //         origins: [origin],
+        //         destinations: [destination],
+        //         travelMode: google.maps.TravelMode.DRIVING,
+        //         avoidHighways: false,
+        //         avoidTolls: false
+        //     },
+        //     callback
+        // );
+
+        //function callback(response, status) {
+        //    var orig = document.getElementById("orig"),
+        //        dest = document.getElementById("dest"),
+        //        dist = document.getElementById("dist");
+        //    time = document.getElementById("time");
+
+        //    if(status=="OK") {
+        //        dest.value = response.destinationAddresses[0];
+        //        orig.value = response.originAddresses[0];
+        //        dist.value = response.rows[0].elements[0].distance.text;
+        //        time.value = response.rows[0].elements[0].duration.text;
+        //    } else {
+        //        alert("Error: " + status);
+        //    }
+        //}
+    </script>
+
+
+    <!--<script>
+        (function() {
+
+            if(!!navigator.geolocation) {
+
+                var map;
+
+                var mapOptions = {
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                map = new google.maps.Map(document.getElementById('google_canvas'), mapOptions);
+
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    console.log(position.coords.latitude);
+                    console.log(position.coords.longitude);
+
+                    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    var infowindow = new google.maps.InfoWindow({
+                        map: map,
+                        position: geolocate,
+                        content:
+                            '<h1>Location pinned from HTML5 Geolocation!</h1>' +
+                            '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
+                            '<h2>Longitude: ' + position.coords.longitude + '</h2>'
+                    });
+
+                    console.log("test");
+                    map.setCenter(geolocate);
+
+                });
+
+            } else {
+                document.getElementById('google_canvas').innerHTML = 'No Geolocation Support.';
+            }
+
+        })();
+    </script>-->
+
+
+</div>
+
+
+
+
+
+
+
+

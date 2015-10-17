@@ -1,0 +1,123 @@
+﻿<div class="loading-dialog" data-loading>
+</div>
+<form name="loginform">
+
+    <div class="container body-content">
+
+        <div class="page-header">
+            <h1>Negotiate with seller</h1>
+        </div>
+
+        <div style="padding-bottom:10px;">
+            <button type="button" style="font-size: 20px;" ng-click="goBack('/')" class="btn btn-primary">&nbsp; &laquo; &nbsp;</button>
+        </div>
+
+        <div class="bigborder">
+            <div style="padding: 5px;">
+                <table>
+                    <tr>
+                        <td class="nameOfItem">{{ ItemName }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                            <img id="{{ItemID}}" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/{{PhotoName}}" class="modal-thumb rcorners" />
+                                    </td>
+                                    <td style="padding-left: 10px;">
+                                       &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Status: {{ StatusDescription}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="uploadeddate">
+                            Date uploaded {{ DateInserted }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="description">{{ Description }}</td>
+                    </tr>
+                    <tr>
+                        <td class="price">R{{ Price }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="bigborder">
+            <div style="padding: 5px;">
+                <div class="form-group">
+                    <label for="yourmessage">Your message:</label>
+                    <textarea  placeholder="If you need any more information. Keep in mind everyone can access these comments but you are anonomyous. Please watch your language." rows="4" class="form-control" ng-model="formData.messagetext" name="messagetext" required />
+                    <div class="alertmessages alert-danger" ng-show="loginform.messagetext.$error.required && loginform.messagetext.$dirty">
+                        Your message can't be blank!
+                    </div>
+                    <br />
+                    <label for="yourmessage">If you want to be notified about any discussion on this item provide your email address:</label>
+                    <input placeholder="valid email required" type="email" class="form-control" ng-model="formData.email" name="email" />
+                    <div class="alertmessages alert-danger" ng-show="loginform.email.$dirty">
+                        Your message can't be blank!
+                    </div>
+                </div>
+
+
+
+
+                
+
+                <!--whole form: {{loginform.$error}}
+        <br>
+        name: {{loginform.user.$error}}
+        <br>
+        email: {{loginform.password.$error}}
+        <br />-->
+
+                <button type="submit" ng-click="processMessages()" ng-disabled="loginform.$invalid" style="width:210px;" class="btn btn-primary">Send message&nbsp;</button>
+                <br /><br />
+
+                <table width="100%" >
+                    <tr>
+                        <td style="font-size: 12px;" class="smallfont">
+                            <b>Buyer</b>
+                        </td>
+                        <td style="padding-left: 20px; padding-right: 20px;">
+                           &nbsp;
+                        </td>
+                        <td style="font-size: 12px;" class="smallfont">
+                            <b>Seller</b>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" ng-repeat="x in names">
+                    <tr>   
+                        <td class="smallfont">
+                            {{ x.DateInserted + '|' + x.Seller + '|' + 'B' | getAge }}
+                        </td>                     
+                        <td style="padding-left: 20px; padding-right: 20px;">
+                            <div class="bubble{{x.Seller}}">
+                                {{x.MessageText}}
+                            </div>
+                        </td>
+                        <td  class="smallfont">
+                            {{ x.DateInserted + '|' + x.Seller + '|' + 'S' | getAge }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>

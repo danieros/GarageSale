@@ -1,0 +1,332 @@
+﻿<div class="container-fluid body-content">
+
+    <div class="page-header">
+        <h1>Upload image version 1</h1>
+    </div>
+
+    <div style="padding-bottom:10px;">
+        <button type="button" style="font-size: 20px;" ng-click="goBack('/PetsRegistered')" class="btn-lgsmall btn-primary-black-verysmall btn-lglgsmall">&nbsp; &laquo; &nbsp;</button>
+    </div>
+
+
+    <div id="demo-top-bar">
+
+        <div id="demo-bar-inside">
+
+            <h2 id="demo-bar-badge">
+                <a href="/">CSS-Tricks Example</a>
+            </h2>
+
+            <div id="demo-bar-buttons">
+                <a class='header-button' href='/html5-drag-and-drop-avatar-changer-with-resizing-and-cropping/'>&larr; Back to Article</a> <a class='header-button' href='/examples/'>More Demos &rarr;</a>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="page-wrap">
+
+        <h1>Drag & Drop Image to Change Avatar</h1>
+
+        <div class="profile">
+
+            <div class="profile-avatar-wrap">
+                <img src="images/256.jpg" id="profile-avatar" alt="Image for Profile">
+            </div>
+
+
+        </div>
+
+        <h3>You could do this with a file input too...</h3>
+        <input type="file" id="uploader">
+
+    </div>
+
+    <!-- In real life, these scripts are combined -->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="resample.js"></script>
+    <script src="avatar.js"></script>-->
+    <script src="Scripts/resample.js"></script>
+    <script src="Scripts/avatar.js"></script>
+
+    <script>
+        // Method uploads a blob to Azure Storage by using a Blob SAS URL.
+        // The Web Browser will add the necessary CORS headers and issue a preflight request if needed.
+        // blobSasUrl: Blob SAS URL already obtained through an Ajax call to own server side.
+        // fileDataAsArrayBuffer: an ArrayBuffer (Byte Array) containing the raw data of the file to be uploaded
+        function uploadImage(filename, blobSasUrl, fileDataAsArrayBuffer) {
+            console.log("uploadimage")
+            var ajaxRequest = new XMLHttpRequest();
+            // Once the image is successfully upload, we will call render Image that would show the uploade image
+            //ajaxRequest.onreadystatechange = function () { return renderImage(filename, ajaxRequest, blobSasUrl) };
+
+            try {
+                // Performing an PutBlob (BlockBlob) against storage
+                ajaxRequest.open('PUT', blobSasUrl, true);
+                ajaxRequest.setRequestHeader('Content-Type', 'image/jpeg');
+                ajaxRequest.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+                ajaxRequest.send(fileDataAsArrayBuffer);
+            }
+            catch (e) {
+                alert("can't upload the image to server.\n" + e.toString());
+            }
+        }
+    </script>
+
+    <style type="text/css" style="display: none !important;">
+        * {
+  box-sizing: border-box;
+}
+
+/* Make sure draggable area is whole page */
+html, body {
+  height: 100%;
+}
+
+body.droppable .profile-avatar-wrap {
+  border: 5px dashed lightblue;
+  z-index: 9999;
+}
+
+.page-wrap {
+  width: 960px;
+  margin: 100px auto;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  border-bottom: 5px solid #ccc;
+}
+h3 {
+  clear: both;
+  margin: 100px 0 0 0;
+}
+
+.profile {
+  width: 50%;
+}
+.profile-avatar-wrap {
+  width: 33.33%;
+  float: left;
+  margin: 0 20px 5px 0;
+  position: relative;
+  pointer-events: none;
+  border: 5px solid transparent;
+}
+.profile-avatar-wrap:after {
+  /* Drag Prevention */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.profile-avatar-wrap img {
+  width: 100%;
+  display: block;
+}
+.location {
+  text-transform: uppercase;
+  color: #999;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  font-size: 90%;
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        #demo-top-bar {
+            text-align: left;
+            background: #222;
+            position: relative;
+            zoom: 1;
+            width: 100% !important;
+            z-index: 6000;
+            padding: 20px 0 20px;
+        }
+
+        #demo-bar-inside {
+            width: 960px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #demo-bar-buttons {
+            padding-top: 10px;
+            float: right;
+        }
+
+            #demo-bar-buttons a {
+                font-size: 12px;
+                margin-left: 20px;
+                color: white;
+                margin: 2px 0;
+                text-decoration: none;
+                font: 14px "Lucida Grande", Sans-Serif !important;
+            }
+
+                #demo-bar-buttons a:hover,
+                #demo-bar-buttons a:focus {
+                    text-decoration: underline;
+                }
+
+        #demo-bar-badge {
+            display: inline-block;
+            width: 302px;
+            padding: 0 !important;
+            margin: 0 !important;
+            background-color: transparent !important;
+        }
+
+            #demo-bar-badge a {
+                display: block;
+                width: 100%;
+                height: 38px;
+                border-radius: 0;
+                bottom: auto;
+                margin: 0;
+                background-size: 100%;
+                overflow: hidden;
+                text-indent: -9999px;
+            }
+
+            #demo-bar-badge:before, #demo-bar-badge:after {
+                display: none !important;
+            }
+    </style>
+
+
+
+
+
+
+    <!--<div class="jumbotron">
+        <p>Select photo that you would like to upload for {{petname}}.</p>
+        <p style="font-size: 10px;">You can upload as many photos as you want for your pet. After you uploaded the photo you will get the opportunity to crop and rotate the photo and to add some comments.</p>
+        <input type="file" id="files" name="files[]" multiple />
+        <output id="list"></output>
+        <div id="showafterupload" style="visibility: visible;"><button type="button" style="width: 300px; font-size: 20px;" ng-click="goBack('/Editimage')" class="btn-lgsmall-fontsmall btn-primary-orange-slider">Edit and save photo</button></div>
+        <div id="uploadedImage" class="row"></div>
+
+    </div>-->
+
+    <!--<script>
+        function renderImage(filename, ajaxRequest, blobSasUri) {
+            if (ajaxRequest.readyState == 4) { // xmlhttp.status==200 == successful request
+
+                myxmlhttp = new XMLHttpRequest();
+
+                myxmlhttp.open("POST", "https://petsimageresizer.scm.azurewebsites.net/api/triggeredwebjobs/ResizeImage/run?arguments=" + filename, false)
+
+                myxmlhttp.setRequestHeader("Authorization", "Basic JFBldHNJbWFnZVJlc2l6ZXI6N1IyRVJtbXpNbXNMNzgwQnZXSEVDa2R0WldnVEJtaUNkcExocGF1ZTZmdjlTZmRaNEtpTDBOdURxV2pz");
+
+
+                myxmlhttp.send();
+
+                window.setTimeout(function () {
+                    // this will execute 10 second later
+                    var image = '<img src="https://petsocietyphotos.blob.core.windows.net/animalphotosout/200/' + filename + '" width="200" alt="" />';
+                    console.log("image = " + image);
+                    $('#showafterupload').css('visibility', 'visible');
+                    $("#uploadedImage").prepend(image);
+                }, 10000);
+                //alert("blobSasUri = " + blobSasUri);
+
+            }
+        }
+
+
+        // Method uploads a blob to Azure Storage by using a Blob SAS URL.
+        // The Web Browser will add the necessary CORS headers and issue a preflight request if needed.
+        // blobSasUrl: Blob SAS URL already obtained through an Ajax call to own server side.
+        // fileDataAsArrayBuffer: an ArrayBuffer (Byte Array) containing the raw data of the file to be uploaded
+        function uploadImage(filename, blobSasUrl, fileDataAsArrayBuffer) {
+            var ajaxRequest = new XMLHttpRequest();
+            // Once the image is successfully upload, we will call render Image that would show the uploade image
+            ajaxRequest.onreadystatechange = function () { return renderImage(filename, ajaxRequest, blobSasUrl) };
+
+            try {
+                // Performing an PutBlob (BlockBlob) against storage
+                ajaxRequest.open('PUT', blobSasUrl, true);
+                ajaxRequest.setRequestHeader('Content-Type', 'image/jpeg');
+                ajaxRequest.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+                ajaxRequest.send(fileDataAsArrayBuffer);
+            }
+            catch (e) {
+                alert("can't upload the image to server.\n" + e.toString());
+            }
+        }
+
+        // This Method is called after users selects the images for upload.
+        // It loops over all selected files and uploads them one by one into Azure Storage.
+        function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+
+            // Loop through the FileList, save them and render image files as thumbnails.
+            for (var i = 0, file; file = files[i]; i++) {
+
+                // Create a reader that would read the entire file data as ArrayBuffer
+                var reader = new FileReader();
+
+                // AJAX URL that would be used to request an Azure Blob SAS URL
+                //file.azureUri = "/Home/GetBlobSasUrl" + "?blobName=" + file.name;
+
+                file.azureUri = "../ReturnSAS.ashx" + "?blobName=" + file.name;
+
+                var filename = file.name;
+
+                reader.onloadend = (function (theFile) {
+                    return function (e) {
+
+                        //// shrink image
+                        //var image = document.createElement('img');
+                        //image.src = reader.result;
+                        //var mycanvas = document.createElement('canvas');
+                        //var ctx = mycanvas.getContext('2d');
+                        //ctx.drawImage(image, 0, 0, 300, 300);
+                        //var shrinked = mycanvas.readAsArrayBuffer('image/jpeg');
+                        //console.log(shrinked);
+
+                        // Once the reader is done reading the file bytes
+                        // We will issue an AJAX call against our service to get the SAS URL
+                        $.ajax({
+                            type: 'GET',
+                            url: theFile.azureUri,
+                            success: function (res, status, xhr) {
+                                // Called into GetBlobSasUrl to generate the SAS for the required blob
+                                blobSasUrl = xhr.responseText;
+                                // Now we have the right SAS url that we will use to upload the image
+                                // Pass in the SAS URL and the ArrayBuffer to be uploaded
+
+                                uploadImage(filename, blobSasUrl, e.target.result);
+                            },
+                            error: function (res, status, xhr) {
+                                alert("can't get sas from the server");
+                            }
+                        });
+                    };
+                })(file);
+
+                console.log("file = " + file);
+
+                // Read in the image file as a data URL, once done the reader.onloadend event is raised
+                reader.readAsArrayBuffer(file);
+            }
+        }
+
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+    </script>-->
+
+</div>
+
+<br />

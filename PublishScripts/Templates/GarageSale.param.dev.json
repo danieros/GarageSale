@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "virtualgaragesale"
+  },
+  "hostingPlanName": {
+    "value": "DanieService"
+  },
+  "siteLocation": {
+    "value": "North Europe"
+  },
+  "sku": {
+    "value": "Standard"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "1263b512-0c76-4752-8d86-96285edcbd92"
+  },
+  "resourceGroup": {
+    "value": "Group"
+  }
+}

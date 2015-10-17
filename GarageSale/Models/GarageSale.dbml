@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GarageSale" Class="GarageSaleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=rossouw.database.windows.net;Initial Catalog=GarageSale;User ID=danieros;Connect Timeout=60" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GarageSaleConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.sp_InsertMessages" Method="sp_InsertMessages">
+    <Parameter Name="memberid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="messagetext" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="seller" Type="System.Int32" DbType="Int" />
+    <Parameter Name="itemid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_EmailNotificationCreate" Method="sp_EmailNotificationCreate">
+    <Parameter Name="itemid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="email" Type="System.String" DbType="VarChar(200)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_GetMemberItems_Single" Method="sp_GetMemberItems_Single">
+    <Parameter Name="memberid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="itemid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_GetMemberItems_SingleResult">
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoName" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateInserted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="StatusDescription" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_GetMessages" Method="sp_GetMessages">
+    <Parameter Name="itemid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_GetMessagesResult">
+      <Column Name="MessageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Seller" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateInserted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_GetMemberItems" Method="sp_GetMemberItems">
+    <Parameter Name="memberid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_GetMemberItemsResult">
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoName" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateInserted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="StatusDescription" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="StatusID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AdditionalURL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LastMessage" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Seller" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_GetGarageSales" Method="sp_GetGarageSales">
+    <ElementType Name="sp_GetGarageSalesResult">
+      <Column Name="MemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="WhatsApp" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DateInserted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Avatar" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MyMessage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nameofsale" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

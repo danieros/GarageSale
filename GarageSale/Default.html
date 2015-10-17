@@ -1,0 +1,173 @@
+﻿<div class="loading-dialog" data-loading data-ng-init="init()">
+</div>
+
+
+
+<div class="container body-content">
+
+    <notifications-bar class="notifications"></notifications-bar>
+
+
+    <div>
+        <div class="row row-centered">
+            <div class="col-sm-4">
+                <img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/1_Avatar.jpg" class="img-circle" style="border:4px solid white;" />
+            </div>
+            <div class="col-sm-3 mypage-header" style="padding-top: 10px; padding-bottom: 10px;">
+                Danny's virtual garage sale
+            </div>
+            <div class="col-sm-5">
+                <a href="#location"><img height="100" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/Location.png" style="border:1px solid gray; margin-right: 10px;" /></a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        <table width="100%">
+            <tr>
+                <td style="padding-right: 20px;">
+                    <div class="bubbleremark">
+                        I am cleaning house big time.  Hopefully you find something you interested here.  Everything is working condition unless specifically otherwiise mentioned. In Krugersdorp but click on map to see how far you from my place. If you want to whatsapp me directly please use <b>0848850622</b>. No phone calls will be taken.
+                    </div>
+                </td>
+                <td style="width: 15%">
+                    <img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/1_Avatar.jpg" class="img-circle" height="40" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<div class="rules">
+        <b>Rules:</b><br />
+        This site allows users to advertise any item and only act as middleman. Pease ensure that you take all steps to verify authentity of items before payment.
+    </div>-->
+
+    <br />
+
+    <div class="bar">
+        <!-- Create a binding between the searchString model and the text field -->
+        <input class="inputbox" type="text" ng-model="searchString" placeholder="Quick search" />
+    </div>
+
+    <br />
+
+
+    <div  class="bigborder" ng-repeat="x in names | searchForname:searchString">
+        <div style="padding: 5px;">
+            <table>
+                <tr>
+                    <td class="nameOfItem">{{ x.ItemName }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/{{x.PhotoName}}" data-toggle="lightbox" data-title="{{x.ItemName}}" data-footer="{{ x.Description }}">
+                                        <img id="{{x.ItemID}}" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/{{x.PhotoName}}" class="img-circle bordercircle" />
+                                    </a>
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <span style="font-size:10px;">Last update:{{ x.LastUpdate }} - Please click on conversation below for more info.</span>
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 15%; padding-left: 15px;">
+                                                    <div ng-switch on="{{x.Seller}}">
+                                                        <div ng-switch-when="0"><img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/visitor.jpg" class="img-circle" height="40" /></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a style="color: black; cursor: pointer; " ng-click="Messages(x.ItemID)">
+                                                        <div class="bubble{{x.Seller}}">
+                                                            {{x.LastMessage}}
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%; padding-left: 15px;">
+                                                    <div ng-switch on="{{x.Seller}}">
+                                                        <div ng-switch-when="1"><img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/1_Avatar.jpg" class="img-circle" height="40" /></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="clickforimage">
+                        click for bigger image
+                    </td>
+                </tr>
+                <tr>
+                    <td class="status{{x.StatusID}}">
+                        Status: {{ x.StatusDescription}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="uploadeddate">
+                        Date uploaded {{ x.DateInserted }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="description">{{ x.Description }}</td>
+                </tr>
+                <tr>
+                    <td class="description"><a style="color: aqua;" href="{{ x.AdditionalURL }}" target="_blank">more info</a></td>
+                </tr>
+                <tr>
+                    <td class="price">R{{ x.Price }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Event Modal -->
+    <div id="#Modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Event</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Loading...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Event modal -->
+
+    <script>
+
+        $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
+
+
+</div>
+<br />
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script>
+        jQuery( document ).ready(function( $ ) {
+
+            var myname = getParameterByName('PhotoName');
+            alert(name);
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+                });
+    </script>
+</head>
+<body>
+    <img class="img-responsive" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/1_BabySeatForBicycle.JPG" />
+
+
+
+</body>
+</html>
