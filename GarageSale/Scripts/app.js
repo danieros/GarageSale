@@ -156,6 +156,12 @@ app.factory('userService', function () {
         },
         getphoto: function () {
             return userData.photo;
+        },
+        setmemberid: function (memberid) {
+            userData.memberid = memberid;
+        },
+        getmemberid: function () {
+            return userData.memberid;
         }
     };
 });

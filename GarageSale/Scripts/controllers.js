@@ -6,7 +6,7 @@
 
     $scope.garagesaleclick = function (y) {
         console.log("memberid = " + y);
-        userService.setitemid(y);
+        userService.setmemberid(y);
         $location.path('\Home');
     }
 
@@ -14,9 +14,9 @@
 
 
 app.controller('mainController', function ($scope, $location, $http, $routeParams, userService) {
-    var memberid = $location.search().garage;
-    memberid = 1;
-    console.log("paramvalue = " + memberid);
+   // var memberid = $location.search().garage;
+   var memberid = userService.getmemberid();
+    console.log("memberid = " + memberid);
 
     var message1 = "If you interested in having your own virtual garage sale contact rossouw.daniel@gmail.com";
     message1 += "<ul class=\"ulspecial\">";
