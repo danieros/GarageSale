@@ -7,6 +7,9 @@
     $scope.garagesaleclick = function (y) {
         console.log("memberid = " + y);
         userService.setmemberid(y);
+
+        setCookie("memberid", y);
+
         $location.path('\Home');
     }
 
@@ -15,7 +18,13 @@
 
 app.controller('mainController', function ($scope, $location, $http, $routeParams, userService) {
    // var memberid = $location.search().garage;
-   var memberid = userService.getmemberid();
+    var memberid = userService.getmemberid();
+    
+    if (memberid == null)
+    {
+        memberid = getCookie("memberid");
+    }
+
     console.log("memberid = " + memberid);
 
     var message1 = "If you interested in having your own virtual garage sale contact rossouw.daniel@gmail.com";
@@ -74,6 +83,17 @@ app.controller('mainController', function ($scope, $location, $http, $routeParam
 
     myxmlhttp.send();
 
+
+    $http.get("/api/MemberDetail/GetMemberDetails?memberid=" + memberid)
+  .success(function (response) {
+      console.log("avatar = " + response[0].Avatar);
+      $scope.names = response;
+      $scope.avatar = response[0].Avatar;
+      $scope.mymessage = response[0].MyMessage;
+      $scope.garagesalename = response[0].nameofsale;
+      
+  });
+    $scope.selection = [];
 
     //Go back
     //    $http.get("http://virtualgaragesale.azurewebsites.net/api/MemberItems/GetMemberItems?memberid=1")

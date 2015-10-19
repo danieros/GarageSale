@@ -223,6 +223,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GarageSalesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberDetailController.cs" />
     <Compile Include="Controllers\MemberItemsController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\SingleItemController.cs" />
