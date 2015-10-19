@@ -354,3 +354,19 @@
                 0px 0px 0px 18px rgba(0,0,0,0.2),
                 6px 6px 8px 17px #555;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.loading-dialog {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #FFFFFF url('/Images/waiting.gif') 50% 50% no-repeat;
+    /*background: rgba( 0, 0, 0, .2 ) url('../Images/waiting.gif') 50% 50% no-repeat;*/
+}

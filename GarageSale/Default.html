@@ -10,10 +10,10 @@
 
     <div>
         <div class="row row-centered">
-            <div class="col-sm-4">
+            <div class="col-sm-4" ng-cloak>
                 <img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/Avatar/Small/{{avatar}}" class="img-circle" style="border:4px solid white;" />
             </div>
-            <div class="col-sm-3 mypage-header" style="padding-top: 10px; padding-bottom: 10px;">
+            <div class="col-sm-3 mypage-header" style="padding-top: 10px; padding-bottom: 10px;" ng-cloak>
                 {{garagesalename}}
             </div>
             <div class="col-sm-5">
@@ -26,11 +26,11 @@
         <table width="100%">
             <tr>
                 <td style="padding-right: 20px;">
-                    <div class="bubbleremark">
+                    <div class="bubbleremark" ng-cloak>
                        {{mymessage}}
                     </div>
                 </td>
-                <td style="width: 15%">
+                <td style="width: 15%" ng-cloak>
                     <img src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/Avatar/Small/{{avatar}}" class="img-circle" height="40" />
                 </td>
             </tr>
@@ -52,7 +52,7 @@
     <br />
 
 
-    <div  class="bigborder" ng-repeat="x in names | searchForname:searchString">
+    <div  class="bigborder" ng-repeat="x in names | searchForname:searchString" ng-cloak>
         <div style="padding: 5px;">
             <table>
                 <tr>

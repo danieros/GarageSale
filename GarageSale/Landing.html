@@ -32,8 +32,8 @@
 
     <br />
 
-    <div ng-repeat="x in names">
-        <a style="color: black; cursor: pointer; " ng-click="garagesaleclick(x.MemberID)">
+    <div ng-repeat="x in names" ng-cloak>
+        <a style="color: black; cursor: pointer; text-decoration: none;" ng-click="garagesaleclick(x.MemberID)">
             <table width="100%">
                 <tr>
                     <td style="padding-right: 20px;">
