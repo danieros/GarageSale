@@ -1,4 +1,54 @@
 ﻿app.controller('landingController', function ($scope, $location, $http, $routeParams, userService) {
+
+    var lat = -26.282623;
+    var lng = 28.350689;
+    var myLatLng = { lat: lat, lng: lng };
+
+    $(function () {
+        var mapOptions = {
+            //center: new google.maps.LatLng(myLatLng),
+            center: myLatLng,
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false,
+            draggable: false,
+            panControl: true,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true,
+            rotateControl: true,
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        console.log("test");
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+
+        var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: 'Yellow',
+            fillOpacity: 0.35,
+            map: map,
+            center: myLatLng,
+            radius: 5000
+        });
+
+    });
+
+    $scope.priceSlider = 100;
+
+    $scope.$on("slideEnded", function () {
+        alert($scope.priceSlider);
+    });
+
     $http.get("/api/GarageSales/GetGarageSales")
   .success(function (response) { $scope.names = response; });
 
@@ -14,6 +64,16 @@
     }
 
 });
+
+//function TestController() {
+//    var vm = this;
+
+//    vm.priceSlider = {
+//        floor: 0,
+//        ceil: 500,
+//        value: 200
+//    }
+//}
 
 
 app.controller('mainController', function ($scope, $location, $http, $routeParams, userService) {
@@ -76,12 +136,12 @@ app.controller('mainController', function ($scope, $location, $http, $routeParam
 
 
 
-    myxmlhttp = new XMLHttpRequest();
-    myxmlhttp.open("POST", "https://mailforvirtualgarage.scm.azurewebsites.net/api/triggeredwebjobs/GarageSaleMails/run", false);
-    myxmlhttp.setRequestHeader("Authorization", "Basic JE1haWxGb3JWaXJ0dWFsR2FyYWdlOnJiTGNMenZmbHNxeW9kd1dOOUpHbjl5Q001dmxrdU53Uml0MlAzakNOeHpIREZxS1piUFljb2diUHdocw==");
+    //myxmlhttp = new XMLHttpRequest();
+    //myxmlhttp.open("POST", "https://mailforvirtualgarage.scm.azurewebsites.net/api/triggeredwebjobs/GarageSaleMails/run", false);
+    //myxmlhttp.setRequestHeader("Authorization", "Basic JE1haWxGb3JWaXJ0dWFsR2FyYWdlOnJiTGNMenZmbHNxeW9kd1dOOUpHbjl5Q001dmxrdU53Uml0MlAzakNOeHpIREZxS1piUFljb2diUHdocw==");
 
 
-    myxmlhttp.send();
+    //myxmlhttp.send();
 
 
     $http.get("/api/MemberDetail/GetMemberDetails?memberid=" + memberid)

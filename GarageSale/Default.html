@@ -64,7 +64,7 @@
                             <tr>
                                 <td>
                                     <a href="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/{{x.PhotoName}}" data-toggle="lightbox" data-title="{{x.ItemName}}" data-footer="{{ x.Description }}">
-                                        <img id="{{x.ItemID}}" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/{{x.PhotoName}}" class="img-circle bordercircle" />
+                                        <img height="80" id="{{x.ItemID}}" src="https://virtualgaragesale.blob.core.windows.net/virtualgaragesale/100/{{x.PhotoName}}" class="img-circle bordercircle" />
                                     </a>
                                 </td>
                                 <td style="padding-left: 10px;">
@@ -117,7 +117,7 @@
                     <td class="description">{{ x.Description }}</td>
                 </tr>
                 <tr>
-                    <td class="description"><a style="color: aqua;" href="{{ x.AdditionalURL }}" target="_blank">more info</a></td>
+                    <td class="description"><a style="color: darkblue;" href="{{ x.AdditionalURL }}" target="_blank">more info</a></td>
                 </tr>
                 <tr>
                     <td class="price">R{{ x.Price }}</td>

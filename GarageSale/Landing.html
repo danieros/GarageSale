@@ -11,7 +11,7 @@
     <div>
         <div class="row row-centered">
             <div>
-                <img src="http://localhost:50599/Images/virtualgaragesalelogo.png" class="img-responsive" style="border:4px solid white;" />
+                <img src="/Images/virtualgaragesalelogo.png" class="img-responsive" style="border:4px solid white;" />
             </div>
         </div>
     </div>
@@ -32,6 +32,16 @@
 
     <br />
 
+    <div id="map-canvas" class="map_canvas"></div>
+
+    <br />
+    <div class="distanceheading">Distance from your location (km)</div>
+    <div style="padding-left: 10px; padding-right: 10px;">
+        <rzslider rz-slider-model="priceSlider"></rzslider>
+    </div>
+
+    <br /><br />
+
     <div ng-repeat="x in names" ng-cloak>
         <a style="color: black; cursor: pointer; text-decoration: none;" ng-click="garagesaleclick(x.MemberID)">
             <table width="100%">
@@ -40,7 +50,7 @@
                         <div class="bubbleremark">
                             <span class="nameOfItem">{{x.nameofsale}}</span>
                             <br />
-                            10 Items
+                            {{x.counter}} Items
                             <br />
                             Krugersdorp
                         </div>

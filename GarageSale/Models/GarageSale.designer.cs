@@ -97,18 +97,25 @@ namespace GarageSale.Models
 			return ((ISingleResult<sp_GetMemberItemsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_GetGarageSales")]
-		public ISingleResult<sp_GetGarageSalesResult> sp_GetGarageSales()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_GetGarageSalesResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_GetMemberDetails")]
 		public ISingleResult<sp_GetMemberDetailsResult> sp_GetMemberDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> memberid)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), memberid);
 			return ((ISingleResult<sp_GetMemberDetailsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_GetGarageSales")]
+		public ISingleResult<sp_GetGarageSalesResult> sp_GetGarageSales([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> latitude, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> longitude)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), latitude, longitude);
+			return ((ISingleResult<sp_GetGarageSalesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_GetMemberID")]
+		public ISingleResult<sp_GetMemberIDResult> sp_GetMemberID([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(200)")] string garagesaleurl)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), garagesaleurl);
+			return ((ISingleResult<sp_GetMemberIDResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -586,212 +593,6 @@ namespace GarageSale.Models
 		}
 	}
 	
-	public partial class sp_GetGarageSalesResult
-	{
-		
-		private int _MemberID;
-		
-		private string _Name;
-		
-		private string _Surname;
-		
-		private string _Email;
-		
-		private string _WhatsApp;
-		
-		private System.DateTime _DateInserted;
-		
-		private string _Avatar;
-		
-		private string _MyMessage;
-		
-		private System.Nullable<double> _Latitude;
-		
-		private System.Nullable<double> _Longitude;
-		
-		private string _nameofsale;
-		
-		public sp_GetGarageSalesResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MemberID", DbType="Int NOT NULL")]
-		public int MemberID
-		{
-			get
-			{
-				return this._MemberID;
-			}
-			set
-			{
-				if ((this._MemberID != value))
-				{
-					this._MemberID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(300)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surname", DbType="VarChar(200)")]
-		public string Surname
-		{
-			get
-			{
-				return this._Surname;
-			}
-			set
-			{
-				if ((this._Surname != value))
-				{
-					this._Surname = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(200)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WhatsApp", DbType="VarChar(100)")]
-		public string WhatsApp
-		{
-			get
-			{
-				return this._WhatsApp;
-			}
-			set
-			{
-				if ((this._WhatsApp != value))
-				{
-					this._WhatsApp = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateInserted", DbType="DateTime NOT NULL")]
-		public System.DateTime DateInserted
-		{
-			get
-			{
-				return this._DateInserted;
-			}
-			set
-			{
-				if ((this._DateInserted != value))
-				{
-					this._DateInserted = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="VarChar(200)")]
-		public string Avatar
-		{
-			get
-			{
-				return this._Avatar;
-			}
-			set
-			{
-				if ((this._Avatar != value))
-				{
-					this._Avatar = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MyMessage", DbType="VarChar(MAX)")]
-		public string MyMessage
-		{
-			get
-			{
-				return this._MyMessage;
-			}
-			set
-			{
-				if ((this._MyMessage != value))
-				{
-					this._MyMessage = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Float")]
-		public System.Nullable<double> Latitude
-		{
-			get
-			{
-				return this._Latitude;
-			}
-			set
-			{
-				if ((this._Latitude != value))
-				{
-					this._Latitude = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Float")]
-		public System.Nullable<double> Longitude
-		{
-			get
-			{
-				return this._Longitude;
-			}
-			set
-			{
-				if ((this._Longitude != value))
-				{
-					this._Longitude = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nameofsale", DbType="VarChar(200)")]
-		public string nameofsale
-		{
-			get
-			{
-				return this._nameofsale;
-			}
-			set
-			{
-				if ((this._nameofsale != value))
-				{
-					this._nameofsale = value;
-				}
-			}
-		}
-	}
-	
 	public partial class sp_GetMemberDetailsResult
 	{
 		
@@ -993,6 +794,274 @@ namespace GarageSale.Models
 				if ((this._nameofsale != value))
 				{
 					this._nameofsale = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_GetGarageSalesResult
+	{
+		
+		private int _MemberID;
+		
+		private string _Name;
+		
+		private string _Surname;
+		
+		private string _Email;
+		
+		private string _WhatsApp;
+		
+		private System.DateTime _DateInserted;
+		
+		private string _Avatar;
+		
+		private string _MyMessage;
+		
+		private System.Nullable<double> _Latitude;
+		
+		private System.Nullable<double> _Longitude;
+		
+		private string _nameofsale;
+		
+		private string _urlnameofsale;
+		
+		private System.Nullable<int> _counter;
+		
+		public sp_GetGarageSalesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MemberID", DbType="Int NOT NULL")]
+		public int MemberID
+		{
+			get
+			{
+				return this._MemberID;
+			}
+			set
+			{
+				if ((this._MemberID != value))
+				{
+					this._MemberID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(300)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surname", DbType="VarChar(200)")]
+		public string Surname
+		{
+			get
+			{
+				return this._Surname;
+			}
+			set
+			{
+				if ((this._Surname != value))
+				{
+					this._Surname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(200)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WhatsApp", DbType="VarChar(100)")]
+		public string WhatsApp
+		{
+			get
+			{
+				return this._WhatsApp;
+			}
+			set
+			{
+				if ((this._WhatsApp != value))
+				{
+					this._WhatsApp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateInserted", DbType="DateTime NOT NULL")]
+		public System.DateTime DateInserted
+		{
+			get
+			{
+				return this._DateInserted;
+			}
+			set
+			{
+				if ((this._DateInserted != value))
+				{
+					this._DateInserted = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="VarChar(200)")]
+		public string Avatar
+		{
+			get
+			{
+				return this._Avatar;
+			}
+			set
+			{
+				if ((this._Avatar != value))
+				{
+					this._Avatar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MyMessage", DbType="VarChar(MAX)")]
+		public string MyMessage
+		{
+			get
+			{
+				return this._MyMessage;
+			}
+			set
+			{
+				if ((this._MyMessage != value))
+				{
+					this._MyMessage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Float")]
+		public System.Nullable<double> Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this._Latitude = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Float")]
+		public System.Nullable<double> Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this._Longitude = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nameofsale", DbType="VarChar(200)")]
+		public string nameofsale
+		{
+			get
+			{
+				return this._nameofsale;
+			}
+			set
+			{
+				if ((this._nameofsale != value))
+				{
+					this._nameofsale = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_urlnameofsale", DbType="VarChar(200)")]
+		public string urlnameofsale
+		{
+			get
+			{
+				return this._urlnameofsale;
+			}
+			set
+			{
+				if ((this._urlnameofsale != value))
+				{
+					this._urlnameofsale = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_counter", DbType="Int")]
+		public System.Nullable<int> counter
+		{
+			get
+			{
+				return this._counter;
+			}
+			set
+			{
+				if ((this._counter != value))
+				{
+					this._counter = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_GetMemberIDResult
+	{
+		
+		private int _memberid;
+		
+		public sp_GetMemberIDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_memberid", DbType="Int NOT NULL")]
+		public int memberid
+		{
+			get
+			{
+				return this._memberid;
+			}
+			set
+			{
+				if ((this._memberid != value))
+				{
+					this._memberid = value;
 				}
 			}
 		}

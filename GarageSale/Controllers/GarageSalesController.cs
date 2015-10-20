@@ -13,7 +13,7 @@ namespace GarageSale.Controllers
 
         public List<Models.sp_GetGarageSalesResult> GetGarageSales()
         {
-            var garageSaledetail = db.sp_GetGarageSales();
+            var garageSaledetail = db.sp_GetGarageSales(-26.153999, 27.883807);
 
             return garageSaledetail.ToList();
         }

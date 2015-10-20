@@ -265,6 +265,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomNav.css" />
+    <Content Include="Content\rzslider.css" />
     <Content Include="Default.aspx" />
     <Content Include="Default.html" />
     <Content Include="Discussion.html" />
@@ -302,6 +303,7 @@
     <Content Include="Images\facebook.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\virtualgaragesalelogo.png" />
+    <Content Include="Images\waiting.gif" />
     <Content Include="Landing.html" />
     <Content Include="Location.html" />
     <Content Include="Models\GarageSale.dbml">
@@ -339,6 +341,7 @@
     <Content Include="Scripts\resample.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\rzslider.min.js" />
     <Content Include="test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,6 +1,6 @@
 ﻿.navbar-custom {
-  background-color: #5A5A5A; /*blue*/
-  border-color: #5A5A5A; /*blue*/
+  background-color: darkblue; /*blue*/
+  border-color: darkblue; /*blue*/
 }
 .navbar-custom .navbar-brand {
   color: #ecf0f1; /*white*/
